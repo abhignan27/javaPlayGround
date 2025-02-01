@@ -115,4 +115,30 @@ public class PlayGround {
         return freqList;
     }
 
+    public void mostFrequestIpAddress(String[] logs){
+        //String[] logs = {"10.0.0.1 - GET 2020-08-24", "10.0.0.1 - GET 2020-08-24", "10.0.0.2 - GET 2020-08-20", "10.0.0.3 - GET 2020-08-24","10.0.0.3 - GET 2020-08-24","10.0.0.3 - GET 2020-08-24","10.0.0.4 - GET 2020-08-24"};
+        HashMap<String, Integer> map = new HashMap<>();
+        int freq = 0;
+        ArrayList<String> mostFrequentIp = new ArrayList<>();
+        for(String log : logs){
+            String[] arr = log.split(" ");
+            map.put(arr[0], map.getOrDefault(arr[0], 0) + 1);
+        }
+        System.out.println("Log Hashmap -> " + Arrays.asList(map));
+
+        for(String ip: map.keySet()){
+            freq = Math.max(freq, map.get(ip));
+        }
+
+        System.out.println("Value of freq is -> " + freq);
+
+        for(String ip: map.keySet()){
+            if(map.get(ip) == freq){
+                mostFrequentIp.add(ip);
+            }
+        }
+
+        System.out.println("Most frequently occurring ip address is -> " + mostFrequentIp);
+    }
+
 }

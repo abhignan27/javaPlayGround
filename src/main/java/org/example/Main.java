@@ -27,6 +27,9 @@ public class Main {
         map = playGround.getFrequencyCounter(yearList);
         System.out.println("Generated frequency counter -> " + Arrays.asList(map));
         System.out.println("Most frequest year list -> " + playGround.getMostFrequentFromMap(map));
+
+        String[] logs = {"10.0.0.1 - GET 2020-08-24", "10.0.0.1 - GET 2020-08-24", "10.0.0.2 - GET 2020-08-20", "10.0.0.3 - GET 2020-08-24","10.0.0.3 - GET 2020-08-24","10.0.0.3 - GET 2020-08-24","10.0.0.4 - GET 2020-08-24"};
+        playGround.mostFrequestIpAddress(logs);
     }
 
 }
