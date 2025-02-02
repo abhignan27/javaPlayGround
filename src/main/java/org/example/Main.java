@@ -30,6 +30,8 @@ public class Main {
 
         String[] logs = {"10.0.0.1 - GET 2020-08-24", "10.0.0.1 - GET 2020-08-24", "10.0.0.2 - GET 2020-08-20", "10.0.0.3 - GET 2020-08-24","10.0.0.3 - GET 2020-08-24","10.0.0.3 - GET 2020-08-24","10.0.0.4 - GET 2020-08-24"};
         playGround.mostFrequestIpAddress(logs);
+
+        System.out.println("Result of fractionToRecurringDecimal -> " + playGround.fractionToRecurringDecimal(1, 3));
     }
 
 }
