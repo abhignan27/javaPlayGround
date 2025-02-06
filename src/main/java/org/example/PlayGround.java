@@ -221,4 +221,22 @@ public class PlayGround {
         return s.toString();
     }
 
+    public Integer secondSmallestInArray(Integer[] intArray){
+        int largest = -1, secondLargest = -1;
+        for(int i = 0; i < intArray.length; i++){
+            if(intArray[i] > largest){
+                largest = intArray[i];
+            }
+        }
+
+        for(int i = 0; i < intArray.length; i++){
+            if((intArray[i] > secondLargest) && (intArray[i] != largest)){
+                if(intArray[i] > secondLargest){
+                    secondLargest = intArray[i];
+                }
+            }
+        }
+        return secondLargest;
+    }
+
 }

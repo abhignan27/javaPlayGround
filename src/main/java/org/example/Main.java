@@ -35,6 +35,7 @@ public class Main {
         System.out.println("Result of reverse words in a String -> " + playGround.reverseWords("The sky is blue"));
 
         System.out.println("Result of encode string in a array -> " + playGround.encodeInputString("aaaaabbbbccc"));
+        System.out.println("Second largest element in the array -> " + playGround.secondSmallestInArray(new Integer[]{2,4,1,5,6}));
     }
 
 }
