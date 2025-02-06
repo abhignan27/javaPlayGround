@@ -32,6 +32,9 @@ public class Main {
         playGround.mostFrequestIpAddress(logs);
 
         System.out.println("Result of fractionToRecurringDecimal -> " + playGround.fractionToRecurringDecimal(1, 3));
+        System.out.println("Result of reverse words in a String -> " + playGround.reverseWords("The sky is blue"));
+
+        System.out.println("Result of encode string in a array -> " + playGround.encodeInputString("aaaaabbbbccc"));
     }
 
 }

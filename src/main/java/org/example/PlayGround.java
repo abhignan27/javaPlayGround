@@ -184,4 +184,41 @@ public class PlayGround {
         return ans.toString();
     }
 
+    public String reverseWords(String s) {
+        String[] strArray = s.split(" ");
+        String temp;
+        for(int i = 1; i <= strArray.length/2; i++){
+            temp = strArray[i-1];
+            strArray[i-1] = strArray[strArray.length - i];
+            strArray[strArray.length - i] = temp;
+        }
+        System.out.println("Reversed word array -> " + Arrays.toString(strArray));
+        StringBuilder str = new StringBuilder();
+        for(int i = 0; i < strArray.length; i++ ){
+            if (strArray[i] != ""){
+                //str.append(" ");
+                str.append(strArray[i]);
+                str.append(" ");
+            }
+        }
+        return str.toString().strip();
+    }
+
+    //aaaaabbbbccc -> a4b4c3
+    public String encodeInputString(String str){
+        HashMap<Character, Integer> map = new HashMap<>();
+        char[] charArray = str.toCharArray();
+        for(int i = 0; i < charArray.length; i++){
+            map.put(charArray[i], map.getOrDefault(charArray[i], 0) + 1);
+        }
+
+        StringBuilder s = new StringBuilder();
+        for(char c: map.keySet()){
+            s.append(c);
+            s.append(map.get(c));
+        }
+
+        return s.toString();
+    }
+
 }
