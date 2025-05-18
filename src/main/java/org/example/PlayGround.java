@@ -3,6 +3,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 //import java.util.Map;
 
 public class PlayGround {
@@ -205,13 +206,28 @@ public class PlayGround {
     }
 
     //aaaaabbbbccc -> a4b4c3
-    public String encodeInputString(String str){
-        HashMap<Character, Integer> map = new HashMap<>();
-        char[] charArray = str.toCharArray();
-        for(int i = 0; i < charArray.length; i++){
-            map.put(charArray[i], map.getOrDefault(charArray[i], 0) + 1);
-        }
+//    public String encodeInputString(String str){
+//        HashMap<Character, Integer> map = new HashMap<>();
+//        char[] charArray = str.toCharArray();
+//        for(int i = 0; i < charArray.length; i++){
+//            map.put(charArray[i], map.getOrDefault(charArray[i], 0) + 1);
+//        }
+//
+//        StringBuilder s = new StringBuilder();
+//        for(char c: map.keySet()){
+//            s.append(c);
+//            s.append(map.get(c));
+//        }
+//
+//        return s.toString();
+//    }
 
+    public String encodeInputString(String str){
+        char[] charArray = str.toCharArray();
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        for (int i = 0; i < charArray.length; i++ ){
+            map.put(charArray[i], map.getOrDefault(charArray[i], 0)+1);
+        }
         StringBuilder s = new StringBuilder();
         for(char c: map.keySet()){
             s.append(c);
@@ -237,6 +253,92 @@ public class PlayGround {
             }
         }
         return secondLargest;
+    }
+
+    public Boolean arrayEquals(Integer []a, Integer []b){
+        boolean res = false;
+        if (a.length != b.length){
+            return res;
+        } else {
+            for(int i = 0; i < a.length; i++){
+                if (a[i] != b[i]){
+                    return res;
+                }
+            }
+            res = true;
+        }
+        return res;
+    }
+
+    public Integer longestSubString(String str){
+        int count = 0;
+        int maxCount = 0;
+        char previous = ' ';
+        ArrayList<Integer> resultList = new ArrayList<>();
+        for(int i = 0; i < str.length(); i++){
+            char c = str.charAt(i);
+            if (c == previous){
+                count++;
+            } else {
+                count = 1;
+                previous = c;
+            }
+            maxCount = Math.max(count, maxCount);
+        }
+        return  maxCount;
+    }
+
+    public int[] longestSubStringIndexLength(String str){
+        int currLen = 1;
+        int currStart = 0;
+        int maxLen = 1;
+        int maxStart = 0;
+
+        for(int i = 1; i < str.length(); i++){
+            if(str.charAt(i) == str.charAt(i-1)){
+                currLen++;
+            } else {
+                if (currLen > maxLen){
+                    maxLen = currLen;
+                    maxStart = currStart;
+                }
+                currStart = i;
+                currLen = 1;
+            }
+        }
+        if (currLen > maxLen){
+            maxLen = currLen;
+            maxStart = currStart;
+        }
+        return new int[]{maxStart, maxLen};
+    }
+
+    public int goldCollected(int[][] grid){
+        int rows = grid.length;
+        int cols = grid[0].length;
+        int[][] dp = new int[rows][cols];
+
+        if(rows == 0){
+            return 0;
+        }
+
+        dp[rows-1][0] = grid[rows-1][0];
+
+        for(int i = 1; i < cols; i++){
+            dp[rows-1][i] = dp[rows-1][i-1] + grid[rows-1][i];
+        }
+
+        for(int i = rows-2; i >= 0; i--){
+            dp[i][0] = dp[i+1][0] + grid[i][0];
+        }
+
+        for(int i = rows-2; i >= 0; i--){
+            for(int j = 1; j < cols; j++){
+                dp[i][j] = grid[i][j] + Math.max(dp[i+1][j], dp[i][j-1]);
+            }
+        }
+
+        return dp[0][cols-1];
     }
 
 }
